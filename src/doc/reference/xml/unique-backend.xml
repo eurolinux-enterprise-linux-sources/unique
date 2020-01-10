@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+  <!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="UniqueBackend">
+<refmeta>
+<refentrytitle role="top_of_page" id="UniqueBackend.top_of_page">UniqueBackend</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>UNIQUE Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>UniqueBackend</refname>
+<refpurpose>Backend abstraction</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="UniqueBackend.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="UniqueBackend-struct">UniqueBackend</link>;
+                    <link linkend="UniqueBackendClass">UniqueBackendClass</link>;
+<link linkend="UniqueBackend">UniqueBackend</link> *     <link linkend="unique-backend-create">unique_backend_create</link>               (void);
+const <link linkend="gchar">gchar</link> *       <link linkend="unique-backend-get-name">unique_backend_get_name</link>             (<link linkend="UniqueBackend">UniqueBackend</link> *backend);
+<link linkend="void">void</link>                <link linkend="unique-backend-set-name">unique_backend_set_name</link>             (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         const <link linkend="gchar">gchar</link> *name);
+const <link linkend="gchar">gchar</link> *       <link linkend="unique-backend-get-startup-id">unique_backend_get_startup_id</link>       (<link linkend="UniqueBackend">UniqueBackend</link> *backend);
+<link linkend="void">void</link>                <link linkend="unique-backend-set-startup-id">unique_backend_set_startup_id</link>       (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         const <link linkend="gchar">gchar</link> *startup_id);
+<link linkend="GdkScreen">GdkScreen</link> *         <link linkend="unique-backend-get-screen">unique_backend_get_screen</link>           (<link linkend="UniqueBackend">UniqueBackend</link> *backend);
+<link linkend="void">void</link>                <link linkend="unique-backend-set-screen">unique_backend_set_screen</link>           (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         <link linkend="GdkScreen">GdkScreen</link> *screen);
+<link linkend="guint">guint</link>               <link linkend="unique-backend-get-workspace">unique_backend_get_workspace</link>        (<link linkend="UniqueBackend">UniqueBackend</link> *backend);
+<link linkend="gboolean">gboolean</link>            <link linkend="unique-backend-request-name">unique_backend_request_name</link>         (<link linkend="UniqueBackend">UniqueBackend</link> *backend);
+<link linkend="UniqueResponse">UniqueResponse</link>      <link linkend="unique-backend-send-message">unique_backend_send_message</link>         (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         <link linkend="gint">gint</link> command_id,
+                                                         <link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         <link linkend="guint">guint</link> time_);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="UniqueBackend.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----UniqueBackend
+</synopsis>
+</refsect1>
+
+
+
+
+
+
+
+
+<refsect1 id="UniqueBackend.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="UniqueBackend"><type>UniqueBackend</type></link> is the base, abstract class implemented by the different
+IPC mechanisms used by Unique. Each <link linkend="UniqueApp"><type>UniqueApp</type></link> instance creates a
+<link linkend="UniqueBackend"><type>UniqueBackend</type></link> to request the name or to send messages.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="UniqueBackend.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="UniqueBackend-struct" role="struct">
+<title>UniqueBackend</title>
+<indexterm zone="UniqueBackend-struct"><primary sortas="Backend">UniqueBackend</primary></indexterm><programlisting>typedef struct _UniqueBackend UniqueBackend;</programlisting>
+<para>
+The <link linkend="UniqueBackend"><type>UniqueBackend</type></link> structure contains only private data and should only
+be accessed using the provided functions.</para>
+<para>
+</para></refsect2>
+<refsect2 id="UniqueBackendClass" role="struct">
+<title>UniqueBackendClass</title>
+<indexterm zone="UniqueBackendClass"><primary sortas="BackendClass">UniqueBackendClass</primary></indexterm><programlisting>typedef struct {
+  /* vtable, not signals */
+  gboolean       (* request_name) (UniqueBackend     *backend);
+  UniqueResponse (* send_message) (UniqueBackend     *backend,
+                                   gint               command_id,
+                                   UniqueMessageData *message_data,
+                                   guint              time_);
+} UniqueBackendClass;
+</programlisting>
+<para>
+The class that should be implemented by every backend for <link linkend="UniqueApp"><type>UniqueApp</type></link>.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>request_name</structfield>&#160;()</term>
+<listitem><simpara> This method should be used to request the name for the
+  instance set using <link linkend="unique-backend-set-name"><function>unique_backend_set_name()</function></link>
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>send_message</structfield>&#160;()</term>
+<listitem><simpara> This method should be used to send a message to a running
+  instance
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-create" role="function">
+<title>unique_backend_create ()</title>
+<indexterm zone="unique-backend-create"><primary sortas="backend_create">unique_backend_create</primary></indexterm><programlisting><link linkend="UniqueBackend">UniqueBackend</link> *     unique_backend_create               (void);</programlisting>
+<para>
+Creates a <link linkend="UniqueBackend"><type>UniqueBackend</type></link> using the default backend defined at
+compile time. You can override the default backend by setting the
+<literal>UNIQUE_BACKEND</literal> environment variable with the
+name of the desired backend.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly created <link linkend="UniqueBackend"><type>UniqueBackend</type></link> instance
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-get-name" role="function">
+<title>unique_backend_get_name ()</title>
+<indexterm zone="unique-backend-get-name"><primary sortas="backend_get_name">unique_backend_get_name</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       unique_backend_get_name             (<link linkend="UniqueBackend">UniqueBackend</link> *backend);</programlisting>
+<para>
+FIXME</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-set-name" role="function">
+<title>unique_backend_set_name ()</title>
+<indexterm zone="unique-backend-set-name"><primary sortas="backend_set_name">unique_backend_set_name</primary></indexterm><programlisting><link linkend="void">void</link>                unique_backend_set_name             (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         const <link linkend="gchar">gchar</link> *name);</programlisting>
+<para>
+FIXME</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>name</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-get-startup-id" role="function">
+<title>unique_backend_get_startup_id ()</title>
+<indexterm zone="unique-backend-get-startup-id"><primary sortas="backend_get_startup_id">unique_backend_get_startup_id</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       unique_backend_get_startup_id       (<link linkend="UniqueBackend">UniqueBackend</link> *backend);</programlisting>
+<para>
+FIXME</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-set-startup-id" role="function">
+<title>unique_backend_set_startup_id ()</title>
+<indexterm zone="unique-backend-set-startup-id"><primary sortas="backend_set_startup_id">unique_backend_set_startup_id</primary></indexterm><programlisting><link linkend="void">void</link>                unique_backend_set_startup_id       (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         const <link linkend="gchar">gchar</link> *startup_id);</programlisting>
+<para>
+FIXME</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>startup_id</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-get-screen" role="function">
+<title>unique_backend_get_screen ()</title>
+<indexterm zone="unique-backend-get-screen"><primary sortas="backend_get_screen">unique_backend_get_screen</primary></indexterm><programlisting><link linkend="GdkScreen">GdkScreen</link> *         unique_backend_get_screen           (<link linkend="UniqueBackend">UniqueBackend</link> *backend);</programlisting>
+<para>
+FIXME</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-set-screen" role="function">
+<title>unique_backend_set_screen ()</title>
+<indexterm zone="unique-backend-set-screen"><primary sortas="backend_set_screen">unique_backend_set_screen</primary></indexterm><programlisting><link linkend="void">void</link>                unique_backend_set_screen           (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         <link linkend="GdkScreen">GdkScreen</link> *screen);</programlisting>
+<para>
+FIXME</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>screen</parameter>&#160;:</term>
+<listitem><simpara> FIXME
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-get-workspace" role="function">
+<title>unique_backend_get_workspace ()</title>
+<indexterm zone="unique-backend-get-workspace"><primary sortas="backend_get_workspace">unique_backend_get_workspace</primary></indexterm><programlisting><link linkend="guint">guint</link>               unique_backend_get_workspace        (<link linkend="UniqueBackend">UniqueBackend</link> *backend);</programlisting>
+<para>
+Retrieves the current workspace.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueBackend"><type>UniqueBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a workspace number
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-request-name" role="function">
+<title>unique_backend_request_name ()</title>
+<indexterm zone="unique-backend-request-name"><primary sortas="backend_request_name">unique_backend_request_name</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            unique_backend_request_name         (<link linkend="UniqueBackend">UniqueBackend</link> *backend);</programlisting>
+<para>
+Requests the name set using <link linkend="unique-backend-set-name"><function>unique_backend_set_name()</function></link> using <parameter>backend</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueBackend"><type>UniqueBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if the name was assigned to us, <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> if there
+  already is a registered name
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-backend-send-message" role="function">
+<title>unique_backend_send_message ()</title>
+<indexterm zone="unique-backend-send-message"><primary sortas="backend_send_message">unique_backend_send_message</primary></indexterm><programlisting><link linkend="UniqueResponse">UniqueResponse</link>      unique_backend_send_message         (<link linkend="UniqueBackend">UniqueBackend</link> *backend,
+                                                         <link linkend="gint">gint</link> command_id,
+                                                         <link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         <link linkend="guint">guint</link> time_);</programlisting>
+<para>
+Sends <parameter>command_id</parameter>, and optionally <parameter>message_data</parameter>, to a running instance
+using <parameter>backend</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>backend</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueBackend"><type>UniqueBackend</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>command_id</parameter>&#160;:</term>
+<listitem><simpara> command to send
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> message to send, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>time_</parameter>&#160;:</term>
+<listitem><simpara> time of the command emission, or 0 for the current time
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="UniqueResponse"><type>UniqueResponse</type></link> value sent by the running instance
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

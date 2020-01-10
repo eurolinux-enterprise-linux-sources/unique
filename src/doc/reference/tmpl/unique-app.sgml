@@ -1,0 +1,148 @@
+<!-- ##### SECTION Title ##### -->
+UniqueApp
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM UniqueCommand ##### -->
+<para>
+
+</para>
+
+@UNIQUE_INVALID: 
+@UNIQUE_ACTIVATE: 
+@UNIQUE_NEW: 
+@UNIQUE_OPEN: 
+@UNIQUE_CLOSE: 
+
+<!-- ##### STRUCT UniqueApp ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SIGNAL UniqueApp::message-received ##### -->
+<para>
+
+</para>
+
+@uniqueapp: the object which received the signal.
+@arg1: 
+@arg2: 
+@arg3: 
+@Returns: 
+
+<!-- ##### ARG UniqueApp:is-running ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG UniqueApp:name ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG UniqueApp:screen ##### -->
+<para>
+
+</para>
+
+<!-- ##### ARG UniqueApp:startup-id ##### -->
+<para>
+
+</para>
+
+<!-- ##### STRUCT UniqueAppClass ##### -->
+<para>
+
+</para>
+
+@message_received: 
+
+<!-- ##### FUNCTION unique_app_new ##### -->
+<para>
+
+</para>
+
+@name: 
+@startup_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_app_new_with_commands ##### -->
+<para>
+
+</para>
+
+@name: 
+@startup_id: 
+@first_command_name: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_app_add_command ##### -->
+<para>
+
+</para>
+
+@app: 
+@command_name: 
+@command_id: 
+
+
+<!-- ##### FUNCTION unique_app_watch_window ##### -->
+<para>
+
+</para>
+
+@app: 
+@window: 
+
+
+<!-- ##### FUNCTION unique_app_is_running ##### -->
+<para>
+
+</para>
+
+@app: 
+@Returns: 
+
+
+<!-- ##### ENUM UniqueResponse ##### -->
+<para>
+
+</para>
+
+@UNIQUE_RESPONSE_INVALID: 
+@UNIQUE_RESPONSE_OK: 
+@UNIQUE_RESPONSE_CANCEL: 
+@UNIQUE_RESPONSE_FAIL: 
+@UNIQUE_RESPONSE_PASSTHROUGH: 
+
+<!-- ##### FUNCTION unique_app_send_message ##### -->
+<para>
+
+</para>
+
+@app: 
+@command_id: 
+@message_data: 
+@Returns: 
+
+

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+  <!ENTITY version SYSTEM "version.xml">
+]>
+
+<indexdiv>
+<indexdiv><title>A</title>
+<indexentry><primaryie linkends="UNIQUE-API-VERSION--CAPS"><link linkend="UNIQUE-API-VERSION--CAPS">UNIQUE_API_VERSION</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UNIQUE-API-VERSION-S--CAPS"><link linkend="UNIQUE-API-VERSION-S--CAPS">UNIQUE_API_VERSION_S</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueApp-struct"><link linkend="UniqueApp-struct">UniqueApp</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueApp-message-received"><link linkend="UniqueApp-message-received">UniqueApp::message-received</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueApp--is-running"><link linkend="UniqueApp--is-running">UniqueApp:is-running</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueApp--name"><link linkend="UniqueApp--name">UniqueApp:name</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueApp--screen"><link linkend="UniqueApp--screen">UniqueApp:screen</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueApp--startup-id"><link linkend="UniqueApp--startup-id">UniqueApp:startup-id</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueAppClass"><link linkend="UniqueAppClass">UniqueAppClass</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-app-add-command"><link linkend="unique-app-add-command">unique_app_add_command</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-app-is-running"><link linkend="unique-app-is-running">unique_app_is_running</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-app-new"><link linkend="unique-app-new">unique_app_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-app-new-with-commands"><link linkend="unique-app-new-with-commands">unique_app_new_with_commands</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-app-send-message"><link linkend="unique-app-send-message">unique_app_send_message</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-app-watch-window"><link linkend="unique-app-watch-window">unique_app_watch_window</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>B</title>
+<indexentry><primaryie linkends="UniqueBackend-struct"><link linkend="UniqueBackend-struct">UniqueBackend</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueBackendClass"><link linkend="UniqueBackendClass">UniqueBackendClass</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-create"><link linkend="unique-backend-create">unique_backend_create</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-get-name"><link linkend="unique-backend-get-name">unique_backend_get_name</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-get-screen"><link linkend="unique-backend-get-screen">unique_backend_get_screen</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-get-startup-id"><link linkend="unique-backend-get-startup-id">unique_backend_get_startup_id</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-get-workspace"><link linkend="unique-backend-get-workspace">unique_backend_get_workspace</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-request-name"><link linkend="unique-backend-request-name">unique_backend_request_name</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-send-message"><link linkend="unique-backend-send-message">unique_backend_send_message</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-set-name"><link linkend="unique-backend-set-name">unique_backend_set_name</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-set-screen"><link linkend="unique-backend-set-screen">unique_backend_set_screen</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-backend-set-startup-id"><link linkend="unique-backend-set-startup-id">unique_backend_set_startup_id</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>C</title>
+<indexentry><primaryie linkends="UNIQUE-CHECK-VERSION--CAPS"><link linkend="UNIQUE-CHECK-VERSION--CAPS">UNIQUE_CHECK_VERSION</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueCommand"><link linkend="UniqueCommand">UniqueCommand</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>D</title>
+<indexentry><primaryie linkends="UNIQUE-DEFAULT-BACKEND-S--CAPS"><link linkend="UNIQUE-DEFAULT-BACKEND-S--CAPS">UNIQUE_DEFAULT_BACKEND_S</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>M</title>
+<indexentry><primaryie linkends="UNIQUE-MAJOR-VERSION--CAPS"><link linkend="UNIQUE-MAJOR-VERSION--CAPS">UNIQUE_MAJOR_VERSION</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UniqueMessageData"><link linkend="UniqueMessageData">UniqueMessageData</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-copy"><link linkend="unique-message-data-copy">unique_message_data_copy</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-free"><link linkend="unique-message-data-free">unique_message_data_free</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get"><link linkend="unique-message-data-get">unique_message_data_get</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get-filename"><link linkend="unique-message-data-get-filename">unique_message_data_get_filename</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get-screen"><link linkend="unique-message-data-get-screen">unique_message_data_get_screen</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get-startup-id"><link linkend="unique-message-data-get-startup-id">unique_message_data_get_startup_id</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get-text"><link linkend="unique-message-data-get-text">unique_message_data_get_text</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get-uris"><link linkend="unique-message-data-get-uris">unique_message_data_get_uris</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get-workspace"><link linkend="unique-message-data-get-workspace">unique_message_data_get_workspace</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-new"><link linkend="unique-message-data-new">unique_message_data_new</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-set"><link linkend="unique-message-data-set">unique_message_data_set</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-set-filename"><link linkend="unique-message-data-set-filename">unique_message_data_set_filename</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-set-text"><link linkend="unique-message-data-set-text">unique_message_data_set_text</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-set-uris"><link linkend="unique-message-data-set-uris">unique_message_data_set_uris</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UNIQUE-MICRO-VERSION--CAPS"><link linkend="UNIQUE-MICRO-VERSION--CAPS">UNIQUE_MICRO_VERSION</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UNIQUE-MINOR-VERSION--CAPS"><link linkend="UNIQUE-MINOR-VERSION--CAPS">UNIQUE_MINOR_VERSION</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>P</title>
+<indexentry><primaryie linkends="UNIQUE-PROTOCOL-VERSION--CAPS"><link linkend="UNIQUE-PROTOCOL-VERSION--CAPS">UNIQUE_PROTOCOL_VERSION</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UNIQUE-PROTOCOL-VERSION-S--CAPS"><link linkend="UNIQUE-PROTOCOL-VERSION-S--CAPS">UNIQUE_PROTOCOL_VERSION_S</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>R</title>
+<indexentry><primaryie linkends="UniqueResponse"><link linkend="UniqueResponse">UniqueResponse</link></primaryie></indexentry>
+</indexdiv>
+<indexdiv><title>V</title>
+<indexentry><primaryie linkends="UNIQUE-VERSION-HEX--CAPS"><link linkend="UNIQUE-VERSION-HEX--CAPS">UNIQUE_VERSION_HEX</link></primaryie></indexentry>
+<indexentry><primaryie linkends="UNIQUE-VERSION-S--CAPS"><link linkend="UNIQUE-VERSION-S--CAPS">UNIQUE_VERSION_S</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

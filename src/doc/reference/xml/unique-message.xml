@@ -1,0 +1,330 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+  <!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="unique-Message-Data">
+<refmeta>
+<refentrytitle role="top_of_page" id="unique-Message-Data.top_of_page">Message Data</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>UNIQUE Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Message Data</refname>
+<refpurpose>Message container for UniqueApp</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="unique-Message-Data.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="UniqueMessageData">UniqueMessageData</link>;
+<link linkend="UniqueMessageData">UniqueMessageData</link> * <link linkend="unique-message-data-new">unique_message_data_new</link>             (void);
+<link linkend="UniqueMessageData">UniqueMessageData</link> * <link linkend="unique-message-data-copy">unique_message_data_copy</link>            (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+<link linkend="void">void</link>                <link linkend="unique-message-data-free">unique_message_data_free</link>            (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+
+<link linkend="void">void</link>                <link linkend="unique-message-data-set">unique_message_data_set</link>             (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gsize">gsize</link> length);
+const <link linkend="guchar">guchar</link> *      <link linkend="unique-message-data-get">unique_message_data_get</link>             (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         <link linkend="gsize">gsize</link> *length);
+
+<link linkend="gboolean">gboolean</link>            <link linkend="unique-message-data-set-text">unique_message_data_set_text</link>        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         const <link linkend="gchar">gchar</link> *str,
+                                                         <link linkend="gssize">gssize</link> length);
+<link linkend="gchar">gchar</link> *             <link linkend="unique-message-data-get-text">unique_message_data_get_text</link>        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+<link linkend="gboolean">gboolean</link>            <link linkend="unique-message-data-set-uris">unique_message_data_set_uris</link>        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         <link linkend="gchar">gchar</link> **uris);
+<link linkend="gchar">gchar</link> **            <link linkend="unique-message-data-get-uris">unique_message_data_get_uris</link>        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+<link linkend="void">void</link>                <link linkend="unique-message-data-set-filename">unique_message_data_set_filename</link>    (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         const <link linkend="gchar">gchar</link> *filename);
+<link linkend="gchar">gchar</link> *             <link linkend="unique-message-data-get-filename">unique_message_data_get_filename</link>    (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+
+<link linkend="GdkScreen">GdkScreen</link> *         <link linkend="unique-message-data-get-screen">unique_message_data_get_screen</link>      (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+const <link linkend="gchar">gchar</link> *       <link linkend="unique-message-data-get-startup-id">unique_message_data_get_startup_id</link>  (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+<link linkend="guint">guint</link>               <link linkend="unique-message-data-get-workspace">unique_message_data_get_workspace</link>   (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="unique-Message-Data.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> contains the data sent from a <link linkend="UniqueApp"><type>UniqueApp</type></link> to a
+running instance of the same application. It can contain arbitrary
+binary data, and provides convenience functions to set plain text
+or URI list.
+</para>
+<para>
+You should create a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> structure using
+<link linkend="unique-message-data-new"><function>unique_message_data_new()</function></link>, you can copy it using the
+<link linkend="unique-message-data-copy"><function>unique_message_data_copy()</function></link> and you should free it using
+<link linkend="unique-message-data-free"><function>unique_message_data_free()</function></link>.
+</para>
+<para>
+You can set data using <link linkend="unique-message-data-set"><function>unique_message_data_set()</function></link>,
+<link linkend="unique-message-data-set-text"><function>unique_message_data_set_text()</function></link>, <link linkend="unique-message-data-set-filename"><function>unique_message_data_set_filename()</function></link>
+or <link linkend="unique-message-data-set-uris"><function>unique_message_data_set_uris()</function></link>.
+</para>
+<para>
+You can retrieve the data set using <link linkend="unique-message-data-get"><function>unique_message_data_get()</function></link>,
+<link linkend="unique-message-data-get-text"><function>unique_message_data_get_text()</function></link>, <link linkend="unique-message-data-get-filename"><function>unique_message_data_get_filename()</function></link>
+or <link linkend="unique-message-data-get-uris"><function>unique_message_data_get_uris()</function></link>.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="unique-Message-Data.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="UniqueMessageData" role="struct">
+<title>UniqueMessageData</title>
+<indexterm zone="UniqueMessageData"><primary sortas="MessageData">UniqueMessageData</primary></indexterm><programlisting>typedef struct _UniqueMessageData UniqueMessageData;</programlisting>
+<para>
+<link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> contains the data passed between instances of
+a <link linkend="UniqueApp"><type>UniqueApp</type></link>. The <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> structure received inside
+the signal handlers for UniqueApp::message-received is guaranteed
+to contain the <link linkend="GdkScreen"><type>GdkScreen</type></link>, the workspace and the startup notification
+id of the instance sending the message.</para>
+<para>
+</para></refsect2>
+<refsect2 id="unique-message-data-new" role="function">
+<title>unique_message_data_new ()</title>
+<indexterm zone="unique-message-data-new"><primary sortas="message_data_new">unique_message_data_new</primary></indexterm><programlisting><link linkend="UniqueMessageData">UniqueMessageData</link> * unique_message_data_new             (void);</programlisting>
+<para>
+Creates a new <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> structure. This structure holds the
+message data passed between running instances with
+<link linkend="unique-app-send-message"><function>unique_app_send_message()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly created <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-copy" role="function">
+<title>unique_message_data_copy ()</title>
+<indexterm zone="unique-message-data-copy"><primary sortas="message_data_copy">unique_message_data_copy</primary></indexterm><programlisting><link linkend="UniqueMessageData">UniqueMessageData</link> * unique_message_data_copy            (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Copies <parameter>message_data</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a copy of the passed <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-free" role="function">
+<title>unique_message_data_free ()</title>
+<indexterm zone="unique-message-data-free"><primary sortas="message_data_free">unique_message_data_free</primary></indexterm><programlisting><link linkend="void">void</link>                unique_message_data_free            (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Frees all the resources allocated by <parameter>message_data</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-set" role="function">
+<title>unique_message_data_set ()</title>
+<indexterm zone="unique-message-data-set"><primary sortas="message_data_set">unique_message_data_set</primary></indexterm><programlisting><link linkend="void">void</link>                unique_message_data_set             (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         const <link linkend="guchar">guchar</link> *data,
+                                                         <link linkend="gsize">gsize</link> length);</programlisting>
+<para>
+Sets <parameter>data</parameter> as the payload of <parameter>message_data</parameter>. Any other data is removed
+from the message data. If <parameter>data</parameter> is <link linkend="NULL--CAPS"><literal>NULL</literal></link>, a <parameter>length</parameter> of -1 will unset
+the payload, while a <parameter>length</parameter> of 0 will set the payload to an empty
+string.
+</para>
+<para>
+You can use <link linkend="unique-message-data-get"><function>unique_message_data_get()</function></link> to retrieve the data.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&#160;:</term>
+<listitem><simpara> binary blob to set, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> length of <parameter>data</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-get" role="function" condition="since:1.0.2">
+<title>unique_message_data_get ()</title>
+<indexterm zone="unique-message-data-get" role="1.0.2"><primary sortas="message_data_get">unique_message_data_get</primary></indexterm><programlisting>const <link linkend="guchar">guchar</link> *      unique_message_data_get             (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         <link linkend="gsize">gsize</link> *length);</programlisting>
+<para>
+Retrieves the raw contents of <parameter>message_data</parameter> set using
+<link linkend="unique-messaget-data-set"><function>unique_messaget_data_set()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> return location for the length of the contents
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the contents of the message data or <link linkend="NULL--CAPS"><literal>NULL</literal></link>. The
+  returned string is owned by the <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> and should
+  never be modified or freed
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 1.0.2</para></refsect2>
+<refsect2 id="unique-message-data-set-text" role="function">
+<title>unique_message_data_set_text ()</title>
+<indexterm zone="unique-message-data-set-text"><primary sortas="message_data_set_text">unique_message_data_set_text</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            unique_message_data_set_text        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         const <link linkend="gchar">gchar</link> *str,
+                                                         <link linkend="gssize">gssize</link> length);</programlisting>
+<para>
+Sets <parameter>str</parameter> as the plain text payload of <parameter>message_data</parameter>, converting it
+to UTF-8 if needed. If <parameter>length</parameter> is -1, the length of the string will
+be used. Use <link linkend="unique-message-data-get-text"><function>unique_message_data_get_text()</function></link> to retrieve the text.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>str</parameter>&#160;:</term>
+<listitem><simpara> plain text to be set as payload
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>length</parameter>&#160;:</term>
+<listitem><simpara> length of the text, or -1
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if the text was successfully converted to UTF-8
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-get-text" role="function">
+<title>unique_message_data_get_text ()</title>
+<indexterm zone="unique-message-data-get-text"><primary sortas="message_data_get_text">unique_message_data_get_text</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             unique_message_data_get_text        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Retrieves the text set using <link linkend="unique-message-data-set-text"><function>unique_message_data_set_text()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an allocated string.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-set-uris" role="function">
+<title>unique_message_data_set_uris ()</title>
+<indexterm zone="unique-message-data-set-uris"><primary sortas="message_data_set_uris">unique_message_data_set_uris</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            unique_message_data_set_uris        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         <link linkend="gchar">gchar</link> **uris);</programlisting>
+<para>
+Converts <parameter>uris</parameter> to a valid URI list and sets it as payload of
+<parameter>message_data</parameter>. You can use <link linkend="unique-message-data-get-uris"><function>unique_message_data_get_uris()</function></link> to
+retrieve the list from a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>uris</parameter>&#160;:</term>
+<listitem><simpara>array zero-terminated=1) (element-type utf8. <acronym>array</acronym> zero-terminated=1. <acronym>element-type</acronym> utf8. </simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if the URIs were successfully converted
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-get-uris" role="function">
+<title>unique_message_data_get_uris ()</title>
+<indexterm zone="unique-message-data-get-uris"><primary sortas="message_data_get_uris">unique_message_data_get_uris</primary></indexterm><programlisting><link linkend="gchar">gchar</link> **            unique_message_data_get_uris        (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Retrieves a <link linkend="NULL--CAPS"><literal>NULL</literal></link>-terminated string vector containing the URIs set with
+<link linkend="unique-message-data-set-uris"><function>unique_message_data_set_uris()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> an allocated list of URIs. Use <link linkend="g-strfreev"><function>g_strfreev()</function></link> to free it.. <acronym>array</acronym> zero-terminated=1. <acronym>element-type</acronym> utf8. <acronym>transfer</acronym> full. </simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-set-filename" role="function" condition="since:1.0.2">
+<title>unique_message_data_set_filename ()</title>
+<indexterm zone="unique-message-data-set-filename" role="1.0.2"><primary sortas="message_data_set_filename">unique_message_data_set_filename</primary></indexterm><programlisting><link linkend="void">void</link>                unique_message_data_set_filename    (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                         const <link linkend="gchar">gchar</link> *filename);</programlisting>
+<para>
+Sets <parameter>filename</parameter> as the contents of <parameter>message_data</parameter>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>filename</parameter>&#160;:</term>
+<listitem><simpara> a filename
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 1.0.2</para></refsect2>
+<refsect2 id="unique-message-data-get-filename" role="function" condition="since:1.0.2">
+<title>unique_message_data_get_filename ()</title>
+<indexterm zone="unique-message-data-get-filename" role="1.0.2"><primary sortas="message_data_get_filename">unique_message_data_get_filename</primary></indexterm><programlisting><link linkend="gchar">gchar</link> *             unique_message_data_get_filename    (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Retrieves the filename set with <link linkend="unique-message-data-set-filename"><function>unique_message_data_set_filename()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a newly allocated string containing the filename.
+  Use <link linkend="g-free"><function>g_free()</function></link> to free the resources used by the returned value.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since 1.0.2</para></refsect2>
+<refsect2 id="unique-message-data-get-screen" role="function">
+<title>unique_message_data_get_screen ()</title>
+<indexterm zone="unique-message-data-get-screen"><primary sortas="message_data_get_screen">unique_message_data_get_screen</primary></indexterm><programlisting><link linkend="GdkScreen">GdkScreen</link> *         unique_message_data_get_screen      (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Returns a pointer to the screen from where the message came. You
+can use <link linkend="gtk-window-set-screen"><function>gtk_window_set_screen()</function></link> to move windows or dialogs to the
+right screen. This field is always set by the Unique library.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> a <link linkend="GdkScreen"><type>GdkScreen</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-get-startup-id" role="function">
+<title>unique_message_data_get_startup_id ()</title>
+<indexterm zone="unique-message-data-get-startup-id"><primary sortas="message_data_get_startup_id">unique_message_data_get_startup_id</primary></indexterm><programlisting>const <link linkend="gchar">gchar</link> *       unique_message_data_get_startup_id  (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Retrieves the startup notification id set inside <parameter>message_data</parameter>. This
+field is always set by the Unique library.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the startup notification id. The returned string is
+  owned by the <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> structure and should not be
+  modified or freed
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-message-data-get-workspace" role="function">
+<title>unique_message_data_get_workspace ()</title>
+<indexterm zone="unique-message-data-get-workspace"><primary sortas="message_data_get_workspace">unique_message_data_get_workspace</primary></indexterm><programlisting><link linkend="guint">guint</link>               unique_message_data_get_workspace   (<link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Retrieves the workspace number from where the message came. This
+field is always set by the Unique library.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the workspace number
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

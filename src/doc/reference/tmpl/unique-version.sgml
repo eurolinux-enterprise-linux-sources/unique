@@ -1,0 +1,101 @@
+<!-- ##### SECTION Title ##### -->
+Versioning Information
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO UNIQUE_MAJOR_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_MINOR_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_MICRO_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_CHECK_VERSION ##### -->
+<para>
+
+</para>
+
+@major: 
+@minor: 
+@micro: 
+
+
+<!-- ##### MACRO UNIQUE_VERSION_S ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_VERSION_HEX ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_API_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_API_VERSION_S ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_PROTOCOL_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_PROTOCOL_VERSION_S ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO UNIQUE_DEFAULT_BACKEND_S ##### -->
+<para>
+
+</para>
+
+
+

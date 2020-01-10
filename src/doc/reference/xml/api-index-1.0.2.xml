@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE indexdiv PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+  <!ENTITY version SYSTEM "version.xml">
+]>
+
+<indexdiv>
+<indexdiv><title>M</title>
+<indexentry><primaryie linkends="unique-message-data-get"><link linkend="unique-message-data-get">unique_message_data_get</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-get-filename"><link linkend="unique-message-data-get-filename">unique_message_data_get_filename</link></primaryie></indexentry>
+<indexentry><primaryie linkends="unique-message-data-set-filename"><link linkend="unique-message-data-set-filename">unique_message_data_set_filename</link></primaryie></indexentry>
+</indexdiv>
+</indexdiv>

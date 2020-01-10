@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+  <!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="unique-Versioning-Information">
+<refmeta>
+<refentrytitle role="top_of_page" id="unique-Versioning-Information.top_of_page">Versioning Information</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>UNIQUE Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Versioning Information</refname>
+<refpurpose>Version utilities</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="unique-Versioning-Information.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="UNIQUE-MAJOR-VERSION--CAPS">UNIQUE_MAJOR_VERSION</link>
+#define             <link linkend="UNIQUE-MINOR-VERSION--CAPS">UNIQUE_MINOR_VERSION</link>
+#define             <link linkend="UNIQUE-MICRO-VERSION--CAPS">UNIQUE_MICRO_VERSION</link>
+#define             <link linkend="UNIQUE-CHECK-VERSION--CAPS">UNIQUE_CHECK_VERSION</link>                (major,minor,micro)
+#define             <link linkend="UNIQUE-VERSION-S--CAPS">UNIQUE_VERSION_S</link>
+#define             <link linkend="UNIQUE-VERSION-HEX--CAPS">UNIQUE_VERSION_HEX</link>
+#define             <link linkend="UNIQUE-API-VERSION--CAPS">UNIQUE_API_VERSION</link>
+#define             <link linkend="UNIQUE-API-VERSION-S--CAPS">UNIQUE_API_VERSION_S</link>
+#define             <link linkend="UNIQUE-PROTOCOL-VERSION--CAPS">UNIQUE_PROTOCOL_VERSION</link>
+#define             <link linkend="UNIQUE-PROTOCOL-VERSION-S--CAPS">UNIQUE_PROTOCOL_VERSION_S</link>
+#define             <link linkend="UNIQUE-DEFAULT-BACKEND-S--CAPS">UNIQUE_DEFAULT_BACKEND_S</link>
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="unique-Versioning-Information.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Unique provides a set of macros to check the version of the library
+and allow compile-time guards around new features.</para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="unique-Versioning-Information.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="UNIQUE-MAJOR-VERSION--CAPS" role="macro">
+<title>UNIQUE_MAJOR_VERSION</title>
+<indexterm zone="UNIQUE-MAJOR-VERSION--CAPS"><primary sortas="MAJOR_VERSION">UNIQUE_MAJOR_VERSION</primary></indexterm><programlisting>#define UNIQUE_MAJOR_VERSION            (1)
+</programlisting>
+<para>
+Major version of Unique</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-MINOR-VERSION--CAPS" role="macro">
+<title>UNIQUE_MINOR_VERSION</title>
+<indexterm zone="UNIQUE-MINOR-VERSION--CAPS"><primary sortas="MINOR_VERSION">UNIQUE_MINOR_VERSION</primary></indexterm><programlisting>#define UNIQUE_MINOR_VERSION            (1)
+</programlisting>
+<para>
+Minor version of Unique</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-MICRO-VERSION--CAPS" role="macro">
+<title>UNIQUE_MICRO_VERSION</title>
+<indexterm zone="UNIQUE-MICRO-VERSION--CAPS"><primary sortas="MICRO_VERSION">UNIQUE_MICRO_VERSION</primary></indexterm><programlisting>#define UNIQUE_MICRO_VERSION            (4)
+</programlisting>
+<para>
+Micro version of Unique</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-CHECK-VERSION--CAPS" role="macro">
+<title>UNIQUE_CHECK_VERSION()</title>
+<indexterm zone="UNIQUE-CHECK-VERSION--CAPS"><primary sortas="CHECK_VERSION">UNIQUE_CHECK_VERSION</primary></indexterm><programlisting>#define             UNIQUE_CHECK_VERSION(major,minor,micro)</programlisting>
+<para>
+Evaluates to <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> when the given version is higher than the version
+of Unique.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>major</parameter>&#160;:</term>
+<listitem><simpara> major version, like 1
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>minor</parameter>&#160;:</term>
+<listitem><simpara> minor version, like 2
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>micro</parameter>&#160;:</term>
+<listitem><simpara> micro version, like 3
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="UNIQUE-VERSION-S--CAPS" role="macro">
+<title>UNIQUE_VERSION_S</title>
+<indexterm zone="UNIQUE-VERSION-S--CAPS"><primary sortas="VERSION_S">UNIQUE_VERSION_S</primary></indexterm><programlisting>#define UNIQUE_VERSION_S                "1.1.4"
+</programlisting>
+<para>
+Unique version as a string</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-VERSION-HEX--CAPS" role="macro">
+<title>UNIQUE_VERSION_HEX</title>
+<indexterm zone="UNIQUE-VERSION-HEX--CAPS"><primary sortas="VERSION_HEX">UNIQUE_VERSION_HEX</primary></indexterm><programlisting>#define             UNIQUE_VERSION_HEX</programlisting>
+<para>
+Unique version as an hexadecimal integer</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-API-VERSION--CAPS" role="macro">
+<title>UNIQUE_API_VERSION</title>
+<indexterm zone="UNIQUE-API-VERSION--CAPS"><primary sortas="API_VERSION">UNIQUE_API_VERSION</primary></indexterm><programlisting>#define UNIQUE_API_VERSION              (1.0)
+</programlisting>
+<para>
+API version</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-API-VERSION-S--CAPS" role="macro">
+<title>UNIQUE_API_VERSION_S</title>
+<indexterm zone="UNIQUE-API-VERSION-S--CAPS"><primary sortas="API_VERSION_S">UNIQUE_API_VERSION_S</primary></indexterm><programlisting>#define UNIQUE_API_VERSION_S            "1.0"
+</programlisting>
+<para>
+API version as a string</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-PROTOCOL-VERSION--CAPS" role="macro">
+<title>UNIQUE_PROTOCOL_VERSION</title>
+<indexterm zone="UNIQUE-PROTOCOL-VERSION--CAPS"><primary sortas="PROTOCOL_VERSION">UNIQUE_PROTOCOL_VERSION</primary></indexterm><programlisting>#define UNIQUE_PROTOCOL_VERSION         (1.0)
+</programlisting>
+<para>
+Protocol version</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-PROTOCOL-VERSION-S--CAPS" role="macro">
+<title>UNIQUE_PROTOCOL_VERSION_S</title>
+<indexterm zone="UNIQUE-PROTOCOL-VERSION-S--CAPS"><primary sortas="PROTOCOL_VERSION_S">UNIQUE_PROTOCOL_VERSION_S</primary></indexterm><programlisting>#define UNIQUE_PROTOCOL_VERSION_S       "1.0"
+</programlisting>
+<para>
+Protocol version as a string</para>
+<para>
+</para></refsect2>
+<refsect2 id="UNIQUE-DEFAULT-BACKEND-S--CAPS" role="macro">
+<title>UNIQUE_DEFAULT_BACKEND_S</title>
+<indexterm zone="UNIQUE-DEFAULT-BACKEND-S--CAPS"><primary sortas="DEFAULT_BACKEND_S">UNIQUE_DEFAULT_BACKEND_S</primary></indexterm><programlisting>#define UNIQUE_DEFAULT_BACKEND_S        "dbus"
+</programlisting>
+<para>
+Default backend as a string</para>
+<para>
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

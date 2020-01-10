@@ -1,0 +1,451 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
+[
+  <!ENTITY version SYSTEM "version.xml">
+]>
+
+<refentry id="UniqueApp">
+<refmeta>
+<refentrytitle role="top_of_page" id="UniqueApp.top_of_page">UniqueApp</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>UNIQUE Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>UniqueApp</refname>
+<refpurpose>Base class for singleton applications</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv id="UniqueApp.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="UniqueCommand">UniqueCommand</link>;
+                    <link linkend="UniqueApp-struct">UniqueApp</link>;
+                    <link linkend="UniqueAppClass">UniqueAppClass</link>;
+<link linkend="UniqueApp">UniqueApp</link> *         <link linkend="unique-app-new">unique_app_new</link>                      (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *startup_id);
+<link linkend="UniqueApp">UniqueApp</link> *         <link linkend="unique-app-new-with-commands">unique_app_new_with_commands</link>        (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *startup_id,
+                                                         const <link linkend="gchar">gchar</link> *first_command_name,
+                                                         ...);
+<link linkend="void">void</link>                <link linkend="unique-app-add-command">unique_app_add_command</link>              (<link linkend="UniqueApp">UniqueApp</link> *app,
+                                                         const <link linkend="gchar">gchar</link> *command_name,
+                                                         <link linkend="gint">gint</link> command_id);
+<link linkend="void">void</link>                <link linkend="unique-app-watch-window">unique_app_watch_window</link>             (<link linkend="UniqueApp">UniqueApp</link> *app,
+                                                         <link linkend="GtkWindow">GtkWindow</link> *window);
+<link linkend="gboolean">gboolean</link>            <link linkend="unique-app-is-running">unique_app_is_running</link>               (<link linkend="UniqueApp">UniqueApp</link> *app);
+enum                <link linkend="UniqueResponse">UniqueResponse</link>;
+<link linkend="UniqueResponse">UniqueResponse</link>      <link linkend="unique-app-send-message">unique_app_send_message</link>             (<link linkend="UniqueApp">UniqueApp</link> *app,
+                                                         <link linkend="gint">gint</link> command_id,
+                                                         <link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);
+</synopsis>
+</refsynopsisdiv>
+
+<refsect1 id="UniqueApp.object-hierarchy" role="object_hierarchy">
+<title role="object_hierarchy.title">Object Hierarchy</title>
+<synopsis>
+  <link linkend="GObject">GObject</link>
+   +----UniqueApp
+</synopsis>
+</refsect1>
+
+
+
+
+
+<refsect1 id="UniqueApp.properties" role="properties">
+<title role="properties.title">Properties</title>
+<synopsis>
+  &quot;<link linkend="UniqueApp--is-running">is-running</link>&quot;               <link linkend="gboolean">gboolean</link>              : Read
+  &quot;<link linkend="UniqueApp--name">name</link>&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+  &quot;<link linkend="UniqueApp--screen">screen</link>&quot;                   <link linkend="GdkScreen">GdkScreen</link>*            : Read / Write / Construct
+  &quot;<link linkend="UniqueApp--startup-id">startup-id</link>&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only
+</synopsis>
+</refsect1>
+
+<refsect1 id="UniqueApp.signals" role="signal_proto">
+<title role="signal_proto.title">Signals</title>
+<synopsis>
+  &quot;<link linkend="UniqueApp-message-received">message-received</link>&quot;                               : Run Last / No Recursion / No Hooks
+</synopsis>
+</refsect1>
+
+
+<refsect1 id="UniqueApp.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+<link linkend="UniqueApp"><type>UniqueApp</type></link> is the base class for single instance applications. You
+can either create an instance of <link linkend="UniqueApp"><type>UniqueApp</type></link> via <link linkend="unique-app-new"><function>unique_app_new()</function></link>
+and <link linkend="unique-app-new-with-commands"><function>unique_app_new_with_commands()</function></link>; or you can subclass <link linkend="UniqueApp"><type>UniqueApp</type></link>
+with your own application class.
+</para>
+<para>
+A <link linkend="UniqueApp"><type>UniqueApp</type></link> instance is guaranteed to either be the first running
+at the time of creation or be able to send messages to the currently
+running instance; there is no race possible between the creation
+of the <link linkend="UniqueApp"><type>UniqueApp</type></link> instance and the call to <link linkend="unique-app-is-running"><function>unique_app_is_running()</function></link>.
+</para>
+<para>
+The usual method for using the <link linkend="UniqueApp"><type>UniqueApp</type></link> API is to create a new
+instance, passing an application-dependent name as construction-only
+property; the UniqueApp:name property is required, and should be in the
+form of a domain name, like <literal>org.gnome.YourApplication</literal>.
+</para>
+<para>
+After the creation, you should check whether an instance of your
+application is already running, using <link linkend="unique-app-is-running"><function>unique_app_is_running()</function></link>; if this
+method returns <link linkend="FALSE--CAPS"><literal>FALSE</literal></link> the usual application construction sequence can
+continue; if it returns <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> you can either exit or send a message using
+<link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> and <link linkend="unique-app-send-message"><function>unique_app_send_message()</function></link>.
+</para>
+<para>
+You can define custom commands using <link linkend="unique-app-add-command"><function>unique_app_add_command()</function></link>: you
+need to provide an arbitrary integer and a string for the command.
+</para>
+<para>
+<note>You need to initialize GTK+ in order to use UniqueApp.</note></para>
+<para>
+</para>
+</refsect1>
+
+<refsect1 id="UniqueApp.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="UniqueCommand" role="enum">
+<title>enum UniqueCommand</title>
+<indexterm zone="UniqueCommand"><primary sortas="Command">UniqueCommand</primary></indexterm><programlisting>typedef enum { /*&lt; prefix=UNIQUE &gt;*/
+  UNIQUE_INVALID  = 0,
+  UNIQUE_ACTIVATE = -1,
+  UNIQUE_NEW      = -2,
+  UNIQUE_OPEN     = -3,
+  UNIQUE_CLOSE    = -4
+} UniqueCommand;
+</programlisting>
+<para>
+Command to send to a currently active instance. User defined commands
+should be positive integers, and should be added using the
+<link linkend="unique-app-add-command"><function>unique_app_add_command()</function></link> function after creating a <link linkend="UniqueApp"><type>UniqueApp</type></link> instance</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="UNIQUE-INVALID--CAPS" role="constant">
+<term><literal>UNIQUE_INVALID</literal></term>
+<listitem><simpara> used internally
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-ACTIVATE--CAPS" role="constant">
+<term><literal>UNIQUE_ACTIVATE</literal></term>
+<listitem><simpara> request to activate a currently active instance; this
+  usually means calling <link linkend="gtk-window-present"><function>gtk_window_present()</function></link> on the application window.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-NEW--CAPS" role="constant">
+<term><literal>UNIQUE_NEW</literal></term>
+<listitem><simpara> request to create a new file.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-OPEN--CAPS" role="constant">
+<term><literal>UNIQUE_OPEN</literal></term>
+<listitem><simpara> request to open a file.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-CLOSE--CAPS" role="constant">
+<term><literal>UNIQUE_CLOSE</literal></term>
+<listitem><simpara> requests to close the currently running instance.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="UniqueApp-struct" role="struct">
+<title>UniqueApp</title>
+<indexterm zone="UniqueApp-struct"><primary sortas="App">UniqueApp</primary></indexterm><programlisting>typedef struct _UniqueApp UniqueApp;</programlisting>
+<para>
+The base class for every single instance application. The <link linkend="UniqueApp"><type>UniqueApp</type></link>
+structure contains only private data and should be manipulated only
+with the provided functions.</para>
+<para>
+</para></refsect2>
+<refsect2 id="UniqueAppClass" role="struct">
+<title>UniqueAppClass</title>
+<indexterm zone="UniqueAppClass"><primary sortas="AppClass">UniqueAppClass</primary></indexterm><programlisting>typedef struct {
+  UniqueResponse (* message_received) (UniqueApp         *app,
+                                       gint               command,
+                                       UniqueMessageData *message_data,
+                                       guint              time_);
+} UniqueAppClass;
+</programlisting>
+<para>
+Base class for every single instance application.</para>
+<para>
+</para><variablelist role="struct">
+<varlistentry>
+<term><structfield>message_received</structfield>&#160;()</term>
+<listitem><simpara> Signal class closure for the UniqueApp::message_received
+  signal.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-app-new" role="function">
+<title>unique_app_new ()</title>
+<indexterm zone="unique-app-new"><primary sortas="app_new">unique_app_new</primary></indexterm><programlisting><link linkend="UniqueApp">UniqueApp</link> *         unique_app_new                      (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *startup_id);</programlisting>
+<para>
+Creates a new <link linkend="UniqueApp"><type>UniqueApp</type></link> instance for <parameter>name</parameter> passing a start-up notification
+id <parameter>startup_id</parameter>.  The name must be a unique identifier for the application,
+and it must be in form of a domain name, like
+<literal>org.gnome.YourApplication</literal>.
+</para>
+<para>
+If <parameter>startup_id</parameter> is <link linkend="NULL--CAPS"><literal>NULL</literal></link> the <literal>DESKTOP_STARTUP_ID</literal>
+environment variable will be check, and if that fails a "fake" startup
+notification id will be created.
+</para>
+<para>
+Once you have created a <link linkend="UniqueApp"><type>UniqueApp</type></link> instance, you should check if
+any other instance is running, using <link linkend="unique-app-is-running"><function>unique_app_is_running()</function></link>.
+If another instance is running you can send a command to it, using
+the <link linkend="unique-app-send-message"><function>unique_app_send_message()</function></link> function; after that, the second instance
+should quit. If no other instance is running, the usual logic for
+creating the application can follow.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&#160;:</term>
+<listitem><simpara> the name of the application's instance
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>startup_id</parameter>&#160;:</term>
+<listitem><simpara> the startup notification id, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly created <link linkend="UniqueApp"><type>UniqueApp</type></link> instance.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-app-new-with-commands" role="function">
+<title>unique_app_new_with_commands ()</title>
+<indexterm zone="unique-app-new-with-commands"><primary sortas="app_new_with_commands">unique_app_new_with_commands</primary></indexterm><programlisting><link linkend="UniqueApp">UniqueApp</link> *         unique_app_new_with_commands        (const <link linkend="gchar">gchar</link> *name,
+                                                         const <link linkend="gchar">gchar</link> *startup_id,
+                                                         const <link linkend="gchar">gchar</link> *first_command_name,
+                                                         ...);</programlisting>
+<para>
+Creates a new <link linkend="UniqueApp"><type>UniqueApp</type></link> instance, with <parameter>name</parameter> and <parameter>startup_id</parameter>,
+and registers a list of custom commands. See <link linkend="unique-app-new"><function>unique_app_new()</function></link> and
+<link linkend="unique-app-add-command"><function>unique_app_add_command()</function></link>.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&#160;:</term>
+<listitem><simpara> the name of the application
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>startup_id</parameter>&#160;:</term>
+<listitem><simpara> startup notification id, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>first_command_name</parameter>&#160;:</term>
+<listitem><simpara> first custom command
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="NULL--CAPS"><literal>NULL</literal></link> terminated list of command names and command ids
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> the newly created <link linkend="UniqueApp"><type>UniqueApp</type></link> instance.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-app-add-command" role="function">
+<title>unique_app_add_command ()</title>
+<indexterm zone="unique-app-add-command"><primary sortas="app_add_command">unique_app_add_command</primary></indexterm><programlisting><link linkend="void">void</link>                unique_app_add_command              (<link linkend="UniqueApp">UniqueApp</link> *app,
+                                                         const <link linkend="gchar">gchar</link> *command_name,
+                                                         <link linkend="gint">gint</link> command_id);</programlisting>
+<para>
+Adds <parameter>command_name</parameter> as a custom command that can be used by <parameter>app</parameter>. You
+must call <link linkend="unique-app-add-command"><function>unique_app_add_command()</function></link> before <link linkend="unique-app-send-message"><function>unique_app_send_message()</function></link> in
+order to use the newly added command.
+</para>
+<para>
+The command name is used internally: you need to use the command's logical
+id in <link linkend="unique-app-send-message"><function>unique_app_send_message()</function></link> and inside the UniqueApp::message-received
+signal.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>app</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueApp"><type>UniqueApp</type></link> 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>command_name</parameter>&#160;:</term>
+<listitem><simpara> command name
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>command_id</parameter>&#160;:</term>
+<listitem><simpara> command logical id
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-app-watch-window" role="function">
+<title>unique_app_watch_window ()</title>
+<indexterm zone="unique-app-watch-window"><primary sortas="app_watch_window">unique_app_watch_window</primary></indexterm><programlisting><link linkend="void">void</link>                unique_app_watch_window             (<link linkend="UniqueApp">UniqueApp</link> *app,
+                                                         <link linkend="GtkWindow">GtkWindow</link> *window);</programlisting>
+<para>
+Makes <parameter>app</parameter> "watch" a window. Every watched window will receive
+startup notification changes automatically.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>app</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueApp"><type>UniqueApp</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>window</parameter>&#160;:</term>
+<listitem><simpara> the <link linkend="GtkWindow"><type>GtkWindow</type></link> to watch
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-app-is-running" role="function">
+<title>unique_app_is_running ()</title>
+<indexterm zone="unique-app-is-running"><primary sortas="app_is_running">unique_app_is_running</primary></indexterm><programlisting><link linkend="gboolean">gboolean</link>            unique_app_is_running               (<link linkend="UniqueApp">UniqueApp</link> *app);</programlisting>
+<para>
+Checks whether another instance of <parameter>app</parameter> is running.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>app</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueApp"><type>UniqueApp</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> <link linkend="TRUE--CAPS"><literal>TRUE</literal></link> if there already is an instance running
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="UniqueResponse" role="enum">
+<title>enum UniqueResponse</title>
+<indexterm zone="UniqueResponse"><primary sortas="Response">UniqueResponse</primary></indexterm><programlisting>typedef enum { /*&lt; prefix=UNIQUE_RESPONSE &gt;*/
+  UNIQUE_RESPONSE_INVALID = 0,
+  UNIQUE_RESPONSE_OK,
+  UNIQUE_RESPONSE_CANCEL,
+  UNIQUE_RESPONSE_FAIL,
+  UNIQUE_RESPONSE_PASSTHROUGH
+} UniqueResponse;
+</programlisting>
+<para>
+Response that a currently active instance of the application should
+return to the caller which sent a command.</para>
+<para>
+</para><variablelist role="enum">
+<varlistentry id="UNIQUE-RESPONSE-INVALID--CAPS" role="constant">
+<term><literal>UNIQUE_RESPONSE_INVALID</literal></term>
+<listitem><simpara> Internal error code, should never be used.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-RESPONSE-OK--CAPS" role="constant">
+<term><literal>UNIQUE_RESPONSE_OK</literal></term>
+<listitem><simpara> The command was successfully executed.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-RESPONSE-CANCEL--CAPS" role="constant">
+<term><literal>UNIQUE_RESPONSE_CANCEL</literal></term>
+<listitem><simpara> The command was cancelled by the user.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-RESPONSE-FAIL--CAPS" role="constant">
+<term><literal>UNIQUE_RESPONSE_FAIL</literal></term>
+<listitem><simpara> The command failed due to a IPC failure.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="UNIQUE-RESPONSE-PASSTHROUGH--CAPS" role="constant">
+<term><literal>UNIQUE_RESPONSE_PASSTHROUGH</literal></term>
+<listitem><simpara> The command was not handled
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="unique-app-send-message" role="function">
+<title>unique_app_send_message ()</title>
+<indexterm zone="unique-app-send-message"><primary sortas="app_send_message">unique_app_send_message</primary></indexterm><programlisting><link linkend="UniqueResponse">UniqueResponse</link>      unique_app_send_message             (<link linkend="UniqueApp">UniqueApp</link> *app,
+                                                         <link linkend="gint">gint</link> command_id,
+                                                         <link linkend="UniqueMessageData">UniqueMessageData</link> *message_data);</programlisting>
+<para>
+Sends <parameter>command</parameter> to a running instance of <parameter>app</parameter>. If you need to pass data
+to the instance, you should create a <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link> object using
+<link linkend="unique-message-data-new"><function>unique_message_data_new()</function></link> and then fill it with the data you intend to
+pass.
+</para>
+<para>
+The running application will receive a UniqueApp::message-received signal
+and will call the various signal handlers attach to it. If any handler
+returns a <link linkend="UniqueResponse"><type>UniqueResponse</type></link> different than <link linkend="UNIQUE-RESPONSE-OK--CAPS"><literal>UNIQUE_RESPONSE_OK</literal></link>, the emission
+will stop.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>app</parameter>&#160;:</term>
+<listitem><simpara> a <link linkend="UniqueApp"><type>UniqueApp</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>command_id</parameter>&#160;:</term>
+<listitem><simpara> command to send
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>, or <link linkend="NULL--CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&#160;:</term><listitem><simpara> The <link linkend="UniqueResponse"><type>UniqueResponse</type></link> returned by the running instance
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+<refsect1 id="UniqueApp.property-details" role="property_details">
+<title role="property_details.title">Property Details</title>
+<refsect2 id="UniqueApp--is-running" role="property"><title>The <literal>&quot;is-running&quot;</literal> property</title>
+<indexterm zone="UniqueApp--is-running"><primary sortas="App:is-running">UniqueApp:is-running</primary></indexterm><programlisting>  &quot;is-running&quot;               <link linkend="gboolean">gboolean</link>              : Read</programlisting>
+<para>
+Whether another instance of the application is running.</para>
+<para>
+</para><para>Default value: FALSE</para>
+</refsect2>
+<refsect2 id="UniqueApp--name" role="property"><title>The <literal>&quot;name&quot;</literal> property</title>
+<indexterm zone="UniqueApp--name"><primary sortas="App:name">UniqueApp:name</primary></indexterm><programlisting>  &quot;name&quot;                     <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>
+The unique name of the application. It must be in form of
+a domain-like string, like <literal>org.gnome.MyApplication</literal>.</para>
+<para>
+</para><para>Default value: NULL</para>
+</refsect2>
+<refsect2 id="UniqueApp--screen" role="property"><title>The <literal>&quot;screen&quot;</literal> property</title>
+<indexterm zone="UniqueApp--screen"><primary sortas="App:screen">UniqueApp:screen</primary></indexterm><programlisting>  &quot;screen&quot;                   <link linkend="GdkScreen">GdkScreen</link>*            : Read / Write / Construct</programlisting>
+<para>
+The <link linkend="GdkScreen"><type>GdkScreen</type></link> of the application.</para>
+<para>
+</para></refsect2>
+<refsect2 id="UniqueApp--startup-id" role="property"><title>The <literal>&quot;startup-id&quot;</literal> property</title>
+<indexterm zone="UniqueApp--startup-id"><primary sortas="App:startup-id">UniqueApp:startup-id</primary></indexterm><programlisting>  &quot;startup-id&quot;               <link linkend="gchar">gchar</link>*                : Read / Write / Construct Only</programlisting>
+<para>
+The startup notification id, needed to complete the startup
+notification sequence. If not set, a default id will be
+automatically given.</para>
+<para>
+</para><para>Default value: NULL</para>
+</refsect2>
+</refsect1>
+
+<refsect1 id="UniqueApp.signal-details" role="signals">
+<title role="signals.title">Signal Details</title>
+<refsect2 id="UniqueApp-message-received" role="signal"><title>The <literal>&quot;message-received&quot;</literal> signal</title>
+<indexterm zone="UniqueApp-message-received"><primary sortas="App::message-received">UniqueApp::message-received</primary></indexterm><programlisting><link linkend="UniqueResponse">UniqueResponse</link>      user_function                      (<link linkend="UniqueApp">UniqueApp</link>         *app,
+                                                        <link linkend="gint">gint</link>               command,
+                                                        <link linkend="UniqueMessageData">UniqueMessageData</link> *message_data,
+                                                        <link linkend="guint">guint</link>              time_,
+                                                        <link linkend="gpointer">gpointer</link>           user_data)         : Run Last / No Recursion / No Hooks</programlisting>
+<para>
+The ::message-received signal is emitted each time a second instance
+of <link linkend="UniqueApp"><type>UniqueApp</type></link> with the same name as <parameter>app</parameter> is launched and sends a
+message using <link linkend="unique-app-send-message"><function>unique_app_send_message()</function></link>. The currently running instance
+should check <parameter>command</parameter> for the action to execute and <parameter>message_data</parameter> for
+eventual other parameters (see <link linkend="UniqueMessageData"><type>UniqueMessageData</type></link>).
+</para>
+<para>
+The signal handler should return a <link linkend="UniqueResponse"><type>UniqueResponse</type></link> value depending on
+whether the command was successfully completed or not. If the
+<link linkend="UNIQUE-RESPONSE-PASSTHROUGH--CAPS"><literal>UNIQUE_RESPONSE_PASSTHROUGH</literal></link> return value is used, the signal
+emission chain will continue until another handler will return another
+response code.</para>
+<para>
+</para><variablelist role="params">
+<varlistentry><term><parameter>app</parameter>&#160;:</term>
+<listitem><simpara> the object which received the signal
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>command</parameter>&#160;:</term>
+<listitem><simpara> command received
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>message_data</parameter>&#160;:</term>
+<listitem><simpara> message data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>time_</parameter>&#160;:</term>
+<listitem><simpara> timestamp of the command
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&#160;:</term>
+<listitem><simpara>user data set when the signal handler was connected.</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+</refsect1>
+
+
+
+</refentry>

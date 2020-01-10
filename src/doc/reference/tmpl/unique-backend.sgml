@@ -1,0 +1,127 @@
+<!-- ##### SECTION Title ##### -->
+UniqueBackend
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT UniqueBackend ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT UniqueBackendClass ##### -->
+<para>
+
+</para>
+
+@request_name: 
+@send_message: 
+
+<!-- ##### FUNCTION unique_backend_create ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_backend_get_name ##### -->
+<para>
+
+</para>
+
+@backend: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_backend_set_name ##### -->
+<para>
+
+</para>
+
+@backend: 
+@name: 
+
+
+<!-- ##### FUNCTION unique_backend_get_startup_id ##### -->
+<para>
+
+</para>
+
+@backend: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_backend_set_startup_id ##### -->
+<para>
+
+</para>
+
+@backend: 
+@startup_id: 
+
+
+<!-- ##### FUNCTION unique_backend_get_screen ##### -->
+<para>
+
+</para>
+
+@backend: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_backend_set_screen ##### -->
+<para>
+
+</para>
+
+@backend: 
+@screen: 
+
+
+<!-- ##### FUNCTION unique_backend_get_workspace ##### -->
+<para>
+
+</para>
+
+@backend: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_backend_request_name ##### -->
+<para>
+
+</para>
+
+@backend: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_backend_send_message ##### -->
+<para>
+
+</para>
+
+@backend: 
+@command_id: 
+@message_data: 
+@time_: 
+@Returns: 
+
+

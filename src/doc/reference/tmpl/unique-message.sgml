@@ -1,0 +1,156 @@
+<!-- ##### SECTION Title ##### -->
+Message Data
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT UniqueMessageData ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION unique_message_data_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_copy ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_free ##### -->
+<para>
+
+</para>
+
+@message_data: 
+
+
+<!-- ##### FUNCTION unique_message_data_set ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@data: 
+@length: 
+
+
+<!-- ##### FUNCTION unique_message_data_get ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@length: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_set_text ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@str: 
+@length: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_get_text ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_set_uris ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@uris: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_get_uris ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_set_filename ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@filename: 
+
+
+<!-- ##### FUNCTION unique_message_data_get_filename ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_get_screen ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_get_startup_id ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION unique_message_data_get_workspace ##### -->
+<para>
+
+</para>
+
+@message_data: 
+@Returns: 
+
+
